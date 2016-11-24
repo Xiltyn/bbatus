@@ -1,0 +1,633 @@
+$icon-font-path: '../fonts/';
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+$phones: "only screen and (max-width : 420px)";
+
+// turn on indicators on drop down menu (non-mobile)
+$showindicators: true;
+
+// ### DROP DOWN STYLES ###
+
+// width of drop down menus
+$sub-min-width: 300px;
+$sub-max-width: 450px;
+$desktop: 'min-width: 992px';
+
+$font-size: 20px;
+$line-height: 26px;
+$padding: 10px;
+
+// kolor dima
+$dimgrey: #696e77;
+// horizontal space between nav items at top level
+$drop-nav-spacing: 30px;
+
+$drop-item-text-color: #cee8ed;
+$drop-item-back-color: #124863;
+$drop-item-font: Arial, san-serif;
+
+$drop-item-text-hover-color: #000;
+$drop-item-back-hover-color: #CCC;
+
+$drop-item-text-color-selected: #00ff00;
+$drop-item-back-color-selected: #777;
+
+$drop-indicators-color: #FFF;
+$drop-indicators-size: 22px;
+
+
+// ### MOBILE NAVIGATION STYLES ###
+
+// veticale gap between expanded mobile menu and top of browser
+$mobile-heading-gap: 60px;
+
+$mobile-font-size: $font-size;
+$mobile-item-font: $drop-item-font;
+$mobile-line-height: $line-height;
+
+// size allocated for tap area to trigger sub menus
+$mobile-sub-width: 20%;
+
+$mobile-indicators-color: #000;
+$mobile-indicators-back-color: #FFF;
+
+//mobile button
+$button-markers: #FFF;
+$button-back: #AAA;
+
+body{
+    background: #557889;
+    }
+
+.bgSizeCover {
+  height: 450px;
+  background-image: url('ttop.jpg');
+  background-size:  cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  // border: 2px solid darkgray;
+  color: #000; text-shadow: 1px 1px 0 #fff;
+}
+
+
+
+// ### DROP DOWN ###
+.sitenavigation {
+display: block;
+  z-index: 100;
+  ul {
+   margin: 15px auto;
+   background-color: #555556;
+    padding: 0;
+  }
+
+  li {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		float: left;
+		margin-right: $drop-nav-spacing; // spacing between nav items
+		font-size: $font-size;
+
+		line-height: $line-height;
+
+		// how items with sub-menus appear when showing subs, most likely same as normal hover
+		&.nav-dropdown:hover > a {
+			background-color: $drop-item-back-hover-color !important;
+			color: $drop-item-text-hover-color;
+		}
+
+		// top level items
+		a {
+			background-color: $drop-item-back-color;
+			color: $drop-item-text-color;
+      font-family: $drop-item-font;
+			text-decoration: none;
+			display: block;
+			padding: $padding;
+          z-index: 100;
+			-webkit-tap-highlight-color: transparent;
+
+      // nav-path-selected and nav-selected are classes to indicate current site location
+			&.nav-path-selected, &.linkclicked {
+				color: white;
+				background-color: $drop-item-back-color;
+			}
+
+			&.nav-selected {
+				background-color: $drop-item-back-color-selected;
+				color: $drop-item-text-color-selected;
+			}
+
+			&:hover {
+				background-color: $drop-item-back-hover-color !important;
+				color: $drop-item-text-hover-color;
+			}
+		}
+
+		&.clicked > ul {  // used for JS/touch trigger
+			display: block;
+		}
+
+		// second level drop downs
+		ul {
+			display: none;
+			position: absolute;
+			min-width: $sub-min-width;
+			max-width: $sub-max-width;
+			padding: 0;
+			margin: 0;
+      z-index: 100;
+
+			a {
+				background-color: darken($drop-item-back-color, 5%);
+			}
+
+			li {
+				float: none;
+				margin: 0;
+			}
+
+			// third level drop downs, expand to the right
+			ul {
+				left: 100%;
+				margin-top: -($line-height + 2*$padding);
+
+				a {
+					background-color: darken($drop-item-back-color, 10%);
+				}
+			}
+		}
+
+	}
+
+	.nav-dropdown:hover > a, .nav-dropdown.clicked > a	 {
+		background-color: $drop-item-back-color;
+	}
+
+	 @if $showindicators {
+		.nav-dropdown > a:after {
+			content: '▼' !important;
+			font-size: 10px;
+			float: right;
+			margin-left: 10px;
+			color: $drop-indicators-color;
+		}
+
+		.nav-dropdown:hover > a:after {
+			content: '▲' !important;
+			font-size: 10px;
+			float: right;
+			margin-left: 10px;
+			color: $drop-indicators-color;
+		}
+	 }
+}
+
+// non javascript expand of menu on hover (fallback)
+.no-js .sitenavigation {
+	li {
+		&:hover > ul {
+			display: block !important;
+		}
+	}
+}
+
+
+// default of mobile menu button, needed for javascript to detect if visible
+.menu-icon {
+	display: none;
+}
+
+
+// ### MOBILE NAV AND MENU BUTTON ###
+@media #{$phones} {
+
+
+	  .menu-icon {
+		width:	40px;
+		height: 40px;
+		padding-top:  0;
+		margin-top: 10px;
+		display: block;
+		float: right;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		background-color: $button-back;
+		padding: 5px;
+		padding-top: 1px;
+		padding-bottom: 12px;
+		border: solid 2px darken($button-back, 5%);
+		margin-bottom: 10px;
+
+		span {
+			display: block;
+			height: 5px;
+			background-color: $button-markers;
+			margin-top:	 5px;
+			border-radius: 4px;
+		}
+
+	}
+
+	.sitenavigation.is-tapped .menu-icon {
+		background-color: darken($button-back, 20%);
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+		span {
+			background-color: darken(#FFF,30%);
+		}
+	}
+
+	.sitenavigation ul {
+		display: block;
+		max-width: none !important;
+	}
+
+	.sitenavigation li {
+		float:	none;
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+
+
+	.sitenavigation.is-tapped  > ul {
+		display:  block;
+		// position: absolute;
+		margin: 0;
+		background-color: $mobile-indicators-back-color;
+		right: 0;
+		left: 0;
+		top: $mobile-heading-gap;
+		z-index: 100;
+		padding: 0;
+
+		a {
+			@include box-sizing(border-box);
+			width: 100%;
+			margin: 0;
+			background-color: $drop-item-back-color;
+			display: block;
+			padding-top: $padding;
+			padding-bottom: $padding;
+			padding-left: 20px;
+			padding-right: 20px;
+			height: auto;
+			color: $drop-item-text-color;
+			float: none;
+			font-size: $mobile-font-size;
+			line-height: $mobile-line-height;
+      font-family: $mobile-item-font;
+
+			border: none !important;
+			-webkit-font-smoothing: antialiased;
+			-webkit-tap-highlight-color: transparent;
+
+			&:hover {
+				background-color: $drop-item-text-hover-color;
+			}
+
+		}
+
+		li {
+			width: 100%;
+			background-color: $mobile-indicators-back-color;
+			border-bottom: solid 1px darken($drop-item-back-color, 20%);
+			-webkit-tap-highlight-color: transparent;
+
+			li {
+				background-color: darken($mobile-indicators-back-color, 20%);
+			}
+		}
+
+
+
+		ul {
+			display: none;
+			width: 100%;
+			z-index: 200;
+			border: none;
+			margin-left: 0;
+			padding: 0;
+			position: relative !important;
+
+			ul {
+				clear: both;
+				left: 0;
+				margin-top: 0;
+			}
+
+			li {
+				border-bottom: solid 1px darken($drop-item-back-color, 5%);
+
+				li a {
+					background-color: darken($drop-item-back-color, 30%);
+					padding-left: 30px;
+				}
+			}
+
+			a {
+				background-color: darken($drop-item-back-color, 10%);
+				font-size: 90%;
+				padding-left: 20px;
+
+				&:before {
+					content: '↳';
+					display: inline-block;
+					margin-right: 4px;
+					color: $mobile-indicators-color;
+					font-family: Arial;
+				}
+			}
+
+		}
+
+
+		// create space for indicator
+		li.nav-dropdown {
+			cursor: pointer;
+
+			&>a {
+				width: 100% - $mobile-sub-width;
+			}
+
+		}
+
+
+		li.nav-dropdown:after {
+			content: '▼';
+			position: absolute;
+			color: $mobile-indicators-color;
+			padding: 0;
+			display: block;
+			width: $mobile-sub-width;
+			right: 0;
+			margin-top: -($line-height + 2*$padding);
+			text-align: center;
+			font-size: $drop-indicators-size;
+			padding-top: $padding;
+			padding-bottom: $padding;
+			@include box-sizing(border-box);
+		}
+
+		li.expanded:after {
+			display: none;
+		}
+
+		li.expanded li:first-child:before {
+			content: '▲' !important;
+			position: absolute;
+			color: darken($mobile-indicators-color, 20%);
+			padding: 0;
+			display: block;
+			width: $mobile-sub-width;
+			right: 0;
+			margin-top: -($line-height + 2 *$padding);
+			text-align: center;
+			font-size: $drop-indicators-size;
+			padding-top: $padding;
+			padding-bottom: $padding;
+			@include box-sizing(border-box);
+
+		}
+
+		 @if $showindicators {
+			// remove unnecessary indicators on mobiles
+			.nav-dropdown > a:after {
+				content: '' !important;
+			}
+
+			.nav-dropdown:hover > a:after {
+				content: '' !important;
+			}
+		}
+
+	}
+}
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 2px;
+  padding-bottom: 20px;
+  list-style: none;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  color: #ffffff;
+  height: 460px;
+  background-image: url('musz.jpg');
+  background-size: cover;
+  border: 1px solid darkgray;
+ padding: 180px 0px 0px 0px;
+
+  border-bottom: 10px solid #e5e5e5;
+  .btn {
+    font-size: 21px;
+    padding: 14px 20px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 10px 0;
+// text-align: center;
+  h1 {font-size: 350%;
+      color: #1b58ba;
+  }
+h3 {    color: #052963;}
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+
+  background-color: lightblue;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 10px;
+  }
+
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.dropdown {
+left: 2%;
+  }
+.jakis-button {
+  background-color: #6ed6a0;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transition: all 0.5s ease-out;
+}
+.drugi {
+  left: 38%;
+}
+.jakis-button:hover {
+  transform: rotate(180deg);
+  background-color: #fff;
+}
+.drugi:hover {
+  transform: rotate(-180deg) translateY(50px);
+  background-color: #2d2d2d;
+}
+.btn-success {
+  transition: all 0.3s ease-out;
+}
+.btn-success:hover {
+  transform: translateY(10px);
+}
+
+
+#galleryAjax {
+  .gallery-item {
+    list-style: none;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+
+// lightbox
+
+.dim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+  background-color: $dimgrey;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.dp-lightbox {
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  .image {
+    width: 90%;
+    height: 50%;
+    margin: 25% 5% 10% 5%;
+    overflow: hidden;
+    img {
+      width: auto;
+      height: 100%;
+      margin-left: -15%;
+    }
+  }
+  .nav {
+    position: relative;
+    width: 50vw;
+    height: 3rem;
+    margin-left: 25vw;
+    margin-top: 6rem;
+    .nav-btn {
+      position: absolute;
+      width: 4rem;
+      height: 4rem;
+      &--right {
+        left: 100%;
+        margin-left: -4rem;
+      }
+    }
+  }
+  @media screen and ($desktop) {
+    .image {
+      background-color: $dimgrey;
+      width: 80%;
+      height: 70%;
+      margin: 5% 10% 5% 10%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-top: -10%;
+      }
+    }
+    .nav {
+      margin-top: 0;
+      .nav-btn {
+        width: 3rem;
+        height: 3rem;
+        &--right {
+          margin-left: -3rem;
+        }
+      }
+    }
+  }
+}
+
+// end lightbox
