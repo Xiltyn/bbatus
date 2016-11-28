@@ -544,6 +544,7 @@ left: 2%;
 #galleryAjax {
   .gallery-item {
     list-style: none;
+    height: 240px;
     img {
       width: 100%;
       height: auto;
@@ -570,60 +571,78 @@ left: 2%;
 .dp-lightbox {
   pointer-events: none;
   opacity: 0;
+display: block;
+margin: auto;
   position: fixed;
-  top: 0;
+  top: 1rem;
+  background-color: #4f4f4f;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 70vw;
+  height: 95vh;
+  margin-left: 15%;
+
+  // margin-right: auto;
   z-index: 100;
   .image {
-    width: 90%;
-    height: 50%;
-    margin: 25% 5% 10% 5%;
+    width: auto;
+    height: 80%;
+    // margin: 10% 10% 10% 10%;
+
     overflow: hidden;
     img {
       width: auto;
-      height: 100%;
-      margin-left: -15%;
+      height: 80%;
+
     }
   }
   .nav {
-    position: relative;
-    width: 50vw;
-    height: 3rem;
-    margin-left: 25vw;
-    margin-top: 6rem;
+    position: fixed;
+    width: 30vw;
+    height: 2rem;
+    margin-left: 20vw;
+    margin-top: 5rem;
     .nav-btn {
-      position: absolute;
-      width: 4rem;
-      height: 4rem;
+      position: fixed;
+      width: 1rem;
+      height: 1rem;
+      left: 30%;
       &--right {
-        left: 100%;
-        margin-left: -4rem;
+        left: 50%;
+        // margin-left: -1rem;
       }
     }
   }
   @media screen and ($desktop) {
     .image {
-      background-color: $dimgrey;
-      width: 80%;
-      height: 70%;
-      margin: 5% 10% 5% 10%;
-      overflow: hidden;
+
+      width: auto;
+      height: 80%;
+      // margin: 5% 5% 5% 5%;
+      display: block;
+      // margin: auto;
+      margin-left: auto;
+      margin-right: auto;
+            // overflow: hidden;
       img {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-        margin-top: -10%;
+        // left: 0%;
+        margin-right: auto;
+        margin-left: auto;
+      display: block;
+
+
+        width: auto;
+        height: 100%;
+        // margin-left: 0;
+        margin-top: 1rem;
       }
     }
     .nav {
       margin-top: 0;
       .nav-btn {
-        width: 3rem;
-        height: 3rem;
+        width: 1rem;
+        height: 1rem;
         &--right {
-          margin-left: -3rem;
+          // margin-left: -3rem;
         }
       }
     }

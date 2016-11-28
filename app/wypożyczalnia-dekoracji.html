@@ -27,6 +27,29 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <div class="dim">
+
+    </div>
+    <section class="dp-lightbox">
+      <div class="image">
+        <img src="images/gallery/WA1.jpg" alt="" />
+      </div>
+      <div class="nav">
+        <div class="nav-btn nav-btn--left">
+          <svg class="dp-btn dp-svg-white">
+            <use xlink:href="symbol-defs.svg#icon-circle-left">
+            </use>
+          </svg>
+        </div>
+        <div class="nav-btn nav-btn--right">
+          <svg class="dp-btn dp-svg-white">
+            <use xlink:href="symbol-defs.svg#icon-circle-right">
+            </use>
+          </svg>
+        </div>
+      </div>
+    </section>
     <div class="container-fluid">
       <div class="row">
 
@@ -39,11 +62,7 @@
       <div class="header">
 
         <div class="sitenavigation">
-    	<span class="menu-icon">
-    		<span class="line"></span>
-    		<span class="line"></span>
-    		<span class="line"></span>
-    	</span>
+
 
     	<ul>
         <li><a href="index.html">O nas</a></li>
@@ -84,29 +103,12 @@
         </ul>
       </div>
 
-      <section class="dp-lightbox">
-        <div class="image">
 
-                <ul id="galleryAjax" class="row">
 
-                </ul>
-        </div>
-        <div class="nav">
-          <div class="nav-btn nav-btn--left">
-            <svg class="dp-btn dp-svg-white">
-              <use xlink:href="symbol-defs.svg#icon-circle-left">
-              </use>
-            </svg>
-          </div>
-          <div class="nav-btn nav-btn--right">
-            <svg class="dp-btn dp-svg-white">
-              <use xlink:href="symbol-defs.svg#icon-circle-right">
-              </use>
-            </svg>
-          </div>
-        </div>
-      </section>
 
+            <ul id="galleryAjax" class="row">
+
+            </ul>
 
 
 
@@ -122,11 +124,13 @@
 <!-- po a href src%> target="_blank" -->
 
     <script type="text/template" id="galleryTemplate">
+      <div class="image">
       <li class="gallery-item col-xs-12 col-sm-6 col-md-4" data-category="<%= category %>">
         <h3><%= name %></h3>
         <!-- <a href="images/gallery/<%= src %>"> -->
         <img src="images/gallery/thumbnails/<%= src %>" alt="<%= name %>" />
       </li>
+    </div>
     </script>
 
 
